@@ -19,6 +19,7 @@ sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]
         lutris \
         input-remapper \
         rom-properties \
+        rom-properties-utils \
         rom-properties-kf6 \
         fcitx5-mozc \
         fcitx5-chinese-addons \
@@ -26,4 +27,10 @@ sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]
         fcitx5-hangul \
         ptyxis && \
 ostree container commit
+
+# Remove desktop entries
+ rm /usr/share/applications/com.gerbilsoft.rom-properties.rp-config.desktop && \
+ rm /usr/share/applications/bazzite-documentation.desktop && \
+ rm /usr/share/applications/discourse.desktop && \
+ ostree container commit
 
