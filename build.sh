@@ -18,6 +18,7 @@ sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]
         sunshine \
         lutris \
         input-remapper \
+        rom-properties \
         rom-properties-kf6 \
         fcitx5-mozc \
         fcitx5-chinese-addons \
