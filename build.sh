@@ -21,6 +21,7 @@ sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]
         rom-properties-kf6 \
         fcitx5-mozc \
         fcitx5-chinese-addons \
+        fcitx5-chinese-addons-data \
         fcitx5-hangul \
         ptyxis && \
 ostree container commit
