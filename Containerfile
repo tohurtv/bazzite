@@ -1,4 +1,4 @@
-FROM ghcr.io/ublue-os/silverblue-main:latest
+FROM docker pull ghcr.io/ublue-os/bazzite:latest
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:stable
