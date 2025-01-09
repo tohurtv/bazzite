@@ -1,4 +1,4 @@
-FROM docker pull ghcr.io/ublue-os/bazzite:latest
+FROM ghcr.io/ublue-os/bazzite:latest AS bazzite
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:stable
