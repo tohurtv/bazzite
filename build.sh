@@ -42,6 +42,8 @@ ostree container commit
         fcitx5-chinese-addons \
         fcitx5-chinese-addons-data \
         fcitx5-hangul \
+        kcharselect \
+        filelight \
         ptyxis && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
