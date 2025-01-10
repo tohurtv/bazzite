@@ -34,6 +34,8 @@ ostree container commit
         fcitx5-libs \
         fcitx5-lua \
         fcitx5-qt-qt6gui \
+        fcitx5-qt-libfcitx5qt6widgets \
+        fcitx5-configtool \
         libime \
         libime-data \
         fcitx5-mozc \
