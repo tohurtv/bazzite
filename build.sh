@@ -22,9 +22,13 @@ sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=false@g' /usr/share/app
         sunshine \
         lutris \
         input-remapper \
+        input-remapper-gtk \
         rom-properties \
         rom-properties-utils \
         rom-properties-kf6 \
+        fcitx5 \
+        fcitx5-data \
+        fcitx5-libs \
         fcitx5-mozc \
         fcitx5-chinese-addons \
         fcitx5-chinese-addons-data \
