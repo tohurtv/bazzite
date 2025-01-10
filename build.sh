@@ -12,13 +12,20 @@ set -ouex pipefail
 # Add Repos
 curl -Lo /etc/yum.repos.d/mullvad.repo https://repository.mullvad.net/rpm/stable/mullvad.repo
 
-# Clean up stuff from Bazzite Upstream
+# Clean up stuff from Bazzite Upstream and add sone extra fixes
 sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,applications:org.kde.discover.desktop,preferred:\/\/filemanager<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml && \
 sed -i '/<entry name="favorites" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,systemsettings.desktop,org.kde.dolphin.desktop,org.kde.kate.desktop,terminal,org.kde.discover.desktop,system-update.desktop<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.kickoff/contents/config/main.xml && \
 rm /usr/share/kglobalaccel/org.gnome.Ptyxis.desktop && \
 sed -i '/^TerminalApplication=kde-ptyxis$/d' /etc/xdg/kdeglobals && \
 sed -i '/^TerminalService=org.gnome.Ptyxis.desktop$/d' /etc/xdg/kdeglobals && \
 cp /usr/share/applications/org.kde.konsole.desktop /usr/share/kglobalaccel/org.kde.konsole.desktop && \
+sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.kde.kdeconnect.app.desktop && \
+sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.kde.kdeconnect.sms.desktop && \
+sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.kde.krfb.desktop && \
+sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/bazzite-documentation.desktop && \
+sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/discourse.desktop && \
+sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/sunshine.desktop && \
+
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
@@ -60,12 +67,4 @@ rpm-ostree install \
         pamixer && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
-
-# Remove desktop entries
- #rm /usr/share/applications/com.gerbilsoft.rom-properties.rp-config.desktop && \
- rm /usr/share/applications/bazzite-documentation.desktop && \
- rm /usr/share/applications/discourse.desktop && \
- rm /usr/share/applications/sunshine.desktop && \
- /usr/libexec/containerbuild/cleanup.sh && \
- ostree container commit
 
