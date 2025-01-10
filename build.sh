@@ -33,7 +33,9 @@ ostree container commit
         fcitx5-data \
         fcitx5-libs \
         fcitx5-lua \
+        fcitx5-qt-qt6gui \
         libime \
+        libime-data \
         fcitx5-mozc \
         fcitx5-chinese-addons \
         fcitx5-chinese-addons-data \
