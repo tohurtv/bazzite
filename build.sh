@@ -15,6 +15,7 @@ sed -i '/<entry name="favorites" type="StringList">/,/<\/entry>/ s/<default>[^<]
 rm /usr/share/kglobalaccel/org.gnome.Ptyxis.desktop && \
 sed -i '/^NoDisplay=true$/d' /usr/share/applications/org.kde.konsole.desktop && \
 cp /usr/share/applications/org.kde.konsole.desktop /usr/share/kglobalaccel/org.kde.konsole.desktop && \
+/usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
 # Remove packages
@@ -34,8 +35,8 @@ ostree container commit
         fcitx5-chinese-addons \
         fcitx5-chinese-addons-data \
         fcitx5-hangul \
-        ptyxis \
-        /usr/libexec/containerbuild/cleanup.sh && \
+        ptyxis && \
+/usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
 # Install packages
@@ -43,6 +44,7 @@ rpm-ostree install \
         konsole \
         playerctl \
         pamixer && \
+/usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
 # Remove desktop entries
@@ -50,5 +52,6 @@ ostree container commit
  rm /usr/share/applications/bazzite-documentation.desktop && \
  rm /usr/share/applications/discourse.desktop && \
  rm /usr/share/applications/sunshine.desktop && \
+ /usr/libexec/containerbuild/cleanup.sh && \
  ostree container commit
 
