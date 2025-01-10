@@ -24,7 +24,6 @@ ostree container commit
         sunshine \
         lutris \
         input-remapper \
-        input-remapper-gtk \
         rom-properties \
         rom-properties-utils \
         rom-properties-kf6 \
