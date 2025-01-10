@@ -13,7 +13,8 @@ set -ouex pipefail
 sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,applications:org.kde.discover.desktop,preferred:\/\/filemanager<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml && \
 sed -i '/<entry name="favorites" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,systemsettings.desktop,org.kde.dolphin.desktop,org.kde.kate.desktop,terminal,org.kde.discover.desktop,system-update.desktop<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.kickoff/contents/config/main.xml && \
 rm /usr/share/kglobalaccel/org.gnome.Ptyxis.desktop && \
-sed -i '/^NoDisplay=true$/d' /usr/share/applications/org.kde.konsole.desktop && \
+sed -i '/^TerminalApplication=kde-ptyxis$/d' /etc/xdg/kdeglobals && \
+sed -i '/^TerminalService=org.gnome.Ptyxis.desktop$/d' /etc/xdg/kdeglobals && \
 cp /usr/share/applications/org.kde.konsole.desktop /usr/share/kglobalaccel/org.kde.konsole.desktop && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
@@ -43,6 +44,7 @@ ostree container commit
         fcitx5-chinese-addons-data \
         fcitx5-hangul \
         kcharselect \
+        kdebugsettings \
         filelight \
         ptyxis && \
 /usr/libexec/containerbuild/cleanup.sh && \
