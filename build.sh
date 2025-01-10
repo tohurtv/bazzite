@@ -27,9 +27,13 @@ ostree container commit
         rom-properties \
         rom-properties-utils \
         rom-properties-kf6 \
+        rom-properties-thumbnailer-dbus \
+        rom-properties-common \
         fcitx5 \
         fcitx5-data \
         fcitx5-libs \
+        fcitx5-lua \
+        libime \
         fcitx5-mozc \
         fcitx5-chinese-addons \
         fcitx5-chinese-addons-data \
@@ -47,7 +51,7 @@ rpm-ostree install \
 ostree container commit
 
 # Remove desktop entries
- rm /usr/share/applications/com.gerbilsoft.rom-properties.rp-config.desktop && \
+ #rm /usr/share/applications/com.gerbilsoft.rom-properties.rp-config.desktop && \
  rm /usr/share/applications/bazzite-documentation.desktop && \
  rm /usr/share/applications/discourse.desktop && \
  rm /usr/share/applications/sunshine.desktop && \
