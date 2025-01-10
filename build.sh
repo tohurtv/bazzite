@@ -13,8 +13,9 @@ set -ouex pipefail
 sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,applications:org.kde.discover.desktop,preferred:\/\/filemanager<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml && \
 sed -i '/<entry name="favorites" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,systemsettings.desktop,org.kde.dolphin.desktop,org.kde.kate.desktop,terminal,org.kde.discover.desktop,system-update.desktop<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.kickoff/contents/config/main.xml && \
 rm /usr/share/kglobalaccel/org.gnome.Ptyxis.desktop && \
-sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=false@g' /usr/share/applications/org.kde.konsole.desktop && \
+sed -i '/^NoDisplay=true$/d' /usr/share/applications/org.kde.konsole.desktop && \
 cp /usr/share/applications/org.kde.konsole.desktop /usr/share/kglobalaccel/org.kde.konsole.desktop && \
+ostree container commit
 
 # Remove packages
  rpm-ostree override remove \
@@ -34,7 +35,7 @@ cp /usr/share/applications/org.kde.konsole.desktop /usr/share/kglobalaccel/org.k
         fcitx5-chinese-addons-data \
         fcitx5-hangul \
         ptyxis \
-        || true && \
+        /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
 # Install packages
