@@ -28,9 +28,17 @@ sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]
         ptyxis && \
 ostree container commit
 
+# Install packages
+rpm-ostree install \
+        konsole \
+        playerctl \
+        pamixer && \
+ostree container commit
+
 # Remove desktop entries
  rm /usr/share/applications/com.gerbilsoft.rom-properties.rp-config.desktop && \
  rm /usr/share/applications/bazzite-documentation.desktop && \
  rm /usr/share/applications/discourse.desktop && \
+ rm /usr/share/applications/sunshine.desktop && \
  ostree container commit
 
