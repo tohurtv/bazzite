@@ -99,9 +99,12 @@ rpm-ostree install \
         xcb-util-wm \
         patchelf \
         pamixer && \
-        rpm-ostree override replace \
-        --experimental \
-        --from repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
+/usr/libexec/containerbuild/cleanup.sh && \
+ostree container commit
+
+rpm-ostree override replace \
+--experimental \
+--from repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
         mesa-libGLU \
         mesa-libOpenCL && \
 /usr/libexec/containerbuild/cleanup.sh && \
