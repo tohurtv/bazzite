@@ -25,7 +25,6 @@ sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/appl
 sed -i 's/^NoDisplay=false$/NoDisplay=true/' /usr/share/applications/bazzite-documentation.desktop && \
 sed -i 's/^NoDisplay=false$/NoDisplay=true/' /usr/share/applications/discourse.desktop && \
 sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/sunshine.desktop && \
-
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
@@ -64,6 +63,43 @@ ostree container commit
 rpm-ostree install \
         konsole \
         playerctl \
+        hipcc \
+        hipblas-devel \
+        rocblas-devel \
+        hipblaslt-devel \
+        rocm-comgr-devel \
+        rocm-smi \
+        miopen \
+        libxcrypt-compat \
+        apr \
+        apr-util \
+        dbus-libs \
+        glx-utils \
+        libglvnd-egl \
+        libglvnd-glx \
+        libICE \
+        librsvg2 \
+        libSM \
+        libxcrypt-compat \
+        libXcursor \
+        libXfixes \
+        libXi \
+        libXinerama \
+        libxkbcommon-x11 \
+        libXrandr \
+        libXtst \
+        libXxf86vm \
+        lshw \
+        mesa-libGLU \
+        mesa-libOpenCL \
+        mtdev \
+        xcb-util \
+        xcb-util-cursor \
+        xcb-util-image \
+        xcb-util-keysyms \
+        xcb-util-renderutil \
+        xcb-util-wm \
+        patchelf \
         pamixer && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
