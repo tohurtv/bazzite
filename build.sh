@@ -103,7 +103,7 @@ rpm-ostree install \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
-rpm-ostree override replace \
+rpm-ostree install \
 --experimental \
 --from repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
         mesa-libOpenCL && \
