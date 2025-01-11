@@ -95,3 +95,13 @@ rpm-ostree install \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
+# Enable Bazzite-multilib 
+sudo sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo && \
+# Install mesa-libOpenCL from bazzite-multilib
+rpm-ostree install \
+        mesa-libOpenCL && \
+# Disable Bazzite-multilib 
+sudo sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=1/enabled=0/}' /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo && \
+/usr/libexec/containerbuild/cleanup.sh && \
+ostree container commit
+
