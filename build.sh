@@ -64,8 +64,6 @@ rpm-ostree install \
         konsole \
         playerctl \
         flatpak-builder \
-        fedmod \
-        rpm2flatpak \
         libxcrypt-compat \
         apr \
         apr-util \
