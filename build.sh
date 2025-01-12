@@ -100,6 +100,29 @@ chown -R "$USER:$USER" "$USER_THEMES"
 
 echo "Sync complete."
 
+# Path to the marker file
+MARKER_FILE="$HOME/.config/user-fixes-done"
+
+# Check if the marker file exists
+if [[ -f "$MARKER_FILE" ]]; then
+    echo "Fixes already applied. Exiting."
+    exit 0
+else
+    echo "Fixes not found. Applying fixes..."
+
+    # Add your commands here
+    echo "Running your commands..."
+    # apply global flatpak overrides for user
+    mkdir -p "$HOME/.local/share/flatpak/overrides"
+cat << EOF > "$HOME/.local/share/flatpak/overrides/global"
+[Context]
+filesystems=xdg-run/udev:ro;~/Games;~/.icons:ro;xdg-config/gtk-3.0;~/.config/gtk-3.0:ro;~/.config/gtk-4.0:ro;~/.themes:ro;~/.fonts:ro;~/.local/share/fonts:ro;/var/mnt;/run/media
+EOF
+    # Create the marker file
+    touch "$MARKER_FILE"
+    echo "Fixes applied. Marker file created at $MARKER_FILE."
+fi
+
 # Exit with status
 exit $?
 EOF
