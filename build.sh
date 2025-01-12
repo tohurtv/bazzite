@@ -123,6 +123,7 @@ EOF
 
 # enable the service
 systemctl --global enable user-fixes.service
+
 # Fix sddm themes by moving and syncing to /var and symlinking to correct location
 # move current location to /usr/share/ublue-os/sddm/themes
 mkdir -p "/usr/share/ublue-os/sddm"
@@ -141,7 +142,7 @@ DEST_DIR="/var/sddm/themes"
 mkdir -p "$DEST_DIR"
 
 # Sync themes while preserving permissions and timestamps
-rsync -au --delete "$SRC_DIR/" "$DEST_DIR/"
+rsync -au "$SRC_DIR/" "$DEST_DIR/"
 
 # Exit with status
 exit $?
