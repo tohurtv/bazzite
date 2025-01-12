@@ -79,6 +79,7 @@ ostree container commit
 # User facing fixes for flatpak and more
 # Create the script
 cat << 'EOF' > "/usr/libexec/user-fixes"
+#!/bin/bash
 # Directories
 SYSTEM_THEMES="/usr/share/themes"
 USER_THEMES="$HOME/.themes"
