@@ -61,36 +61,8 @@ ostree container commit
 
 # Install packages
 rpm-ostree install \
-        konsole \
         playerctl \
         flatpak-builder \
-        libxcrypt-compat \
-        apr \
-        apr-util \
-        dbus-libs \
-        glx-utils \
-        libglvnd-egl \
-        libglvnd-glx \
-        libICE \
-        librsvg2 \
-        libSM \
-        libxcrypt-compat \
-        libXcursor \
-        libXfixes \
-        libXi \
-        libXinerama \
-        libxkbcommon-x11 \
-        libXrandr \
-        libXtst \
-        libXxf86vm \
-        lshw \
-        mtdev \
-        xcb-util \
-        xcb-util-cursor \
-        xcb-util-image \
-        xcb-util-keysyms \
-        xcb-util-renderutil \
-        xcb-util-wm \
         patchelf \
         pamixer && \
 /usr/libexec/containerbuild/cleanup.sh && \
@@ -107,7 +79,7 @@ ostree container commit
 # Fix sddm themes by moving and syncing to /var and symlinking to correct location
 # move current location to /usr/share/ublue-os/sddm/themes
 mkdir -p "/usr/share/ublue-os/sddm/themes"
-mv /usr/share/sddm/themes /usr/share/ublue-os/sddm/themes
+mv /usr/share/sddm/themes /usr/share/ublue-os/sddm/
 # symlink sync location to default sddm theme location
 ln -s /var/sddm/themes /usr/share/sddm/themes
 # Create the sddm theme sync script
