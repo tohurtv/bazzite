@@ -140,7 +140,7 @@ DEST_DIR="/var/sddm/themes"
 mkdir -p "$DEST_DIR"
 
 # Sync themes while preserving permissions and timestamps
-rsync -a --delete "$SRC_DIR/" "$DEST_DIR/"
+rsync -au --delete "$SRC_DIR/" "$DEST_DIR/"
 
 # Exit with status
 exit $?
