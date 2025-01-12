@@ -9,13 +9,8 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# Add and enable repos Repos
+# Add Repos
 curl -Lo /etc/yum.repos.d/mullvad.repo https://repository.mullvad.net/rpm/stable/mullvad.repo
-# Enable Rpm-fusion
-sed -i '/\[rpmfusion-free\]/,/\[/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/rpmfusion-free.repo && \
-sed -i '/\[rpmfusion-free-updates\]/,/\[/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/rpmfusion-free-updates.repo && \
-# Enable Bazzite-multilib 
-sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo && \
 
 # Clean up stuff from Bazzite Upstream and add sone extra fixes
 sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,applications:org.kde.discover.desktop,preferred:\/\/filemanager<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml && \
@@ -68,7 +63,6 @@ ostree container commit
 rpm-ostree install \
         konsole \
         playerctl \
-        chromium-libs-media-freeworld \
         flatpak-builder \
         libxcrypt-compat \
         apr \
@@ -91,7 +85,6 @@ rpm-ostree install \
         libXxf86vm \
         lshw \
         mtdev \
-        mesa-libOpenCL \
         xcb-util \
         xcb-util-cursor \
         xcb-util-image \
@@ -103,9 +96,11 @@ rpm-ostree install \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
-# Disable Rpm-fusion
-sed -i '/\[rpmfusion-free\]/,/\[/{s/enabled=1/enabled=0/}' /etc/yum.repos.d/rpmfusion-free.repo && \
-sed -i '/\[rpmfusion-free-updates\]/,/\[/{s/enabled=1/enabled=0/}' /etc/yum.repos.d/rpmfusion-free-updates.repo && \       
+# Enable Bazzite-multilib 
+sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo && \
+# Install mesa-libOpenCL from bazzite-multilib
+rpm-ostree install \
+        mesa-libOpenCL && \
 # Disable Bazzite-multilib 
 sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=1/enabled=0/}' /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo && \
 /usr/libexec/containerbuild/cleanup.sh && \
