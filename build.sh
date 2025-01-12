@@ -78,7 +78,7 @@ ostree container commit
 
 # Fix sddm themes by moving and syncing to /var and symlinking to correct location
 # move current location to /usr/share/ublue-os/sddm/themes
-mkdir -p "/usr/share/ublue-os/sddm/themes"
+mkdir -p "/usr/share/ublue-os/sddm"
 mv /usr/share/sddm/themes /usr/share/ublue-os/sddm/
 # symlink sync location to default sddm theme location
 ln -s /var/sddm/themes /usr/share/sddm/themes
