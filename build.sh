@@ -92,7 +92,7 @@ fi
 
 # Synchronize themes from /usr/share/themes to ~/.themes
 echo "Syncing themes from $SYSTEM_THEMES to $USER_THEMES..."
-rsync -av --delete --exclude="Adwaita*" --exclude="Clearlooks" --exclude="Crux" --exclude="HighContrast" --exclude="Industrial" --exclude="Mist" --exclude="Raleigh" --exclude="ThinIce" "$SYSTEM_THEMES/" "$USER_THEMES/"
+rsync -auv  --exclude="Adwaita*" --exclude="Clearlooks" --exclude="Crux" --exclude="HighContrast" --exclude="Industrial" --exclude="Mist" --exclude="Raleigh" --exclude="ThinIce" "$SYSTEM_THEMES/" "$USER_THEMES/"
 
 # Set the correct permissions for the user directory
 echo "Setting correct permissions for $USER_THEMES..."
