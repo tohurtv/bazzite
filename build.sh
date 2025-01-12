@@ -78,6 +78,7 @@ ostree container commit
 
 # User facing fixes for flatpak and more
 # Create the script
+# Write the content to the file
 cat << 'EOF' > "/usr/libexec/user-fixes"
 #!/bin/bash
 # Directories
@@ -92,7 +93,7 @@ fi
 
 # Synchronize themes from /usr/share/themes to ~/.themes
 echo "Syncing themes from $SYSTEM_THEMES to $USER_THEMES..."
-rsync -auv  --exclude="Adwaita*" --exclude="Clearlooks" --exclude="Crux" --exclude="HighContrast" --exclude="Industrial" --exclude="Mist" --exclude="Raleigh" --exclude="ThinIce" "$SYSTEM_THEMES/" "$USER_THEMES/"
+rsync -auv --exclude="Adwaita*" --exclude="Clearlooks" --exclude="Crux" --exclude="HighContrast" --exclude="Industrial" --exclude="Mist" --exclude="Raleigh" --exclude="ThinIce" "$SYSTEM_THEMES/" "$USER_THEMES/"
 
 # Set the correct permissions for the user directory
 echo "Setting correct permissions for $USER_THEMES..."
@@ -112,12 +113,13 @@ else
 
     # Add your commands here
     echo "Running your commands..."
-    # apply global flatpak overrides for user
+    # Apply global flatpak overrides for user
     mkdir -p "$HOME/.local/share/flatpak/overrides"
-cat << EOF > "$HOME/.local/share/flatpak/overrides/global"
+cat << EOT > "$HOME/.local/share/flatpak/overrides/global"
 [Context]
 filesystems=xdg-run/udev:ro;~/Games;~/.icons:ro;xdg-config/gtk-3.0;~/.config/gtk-3.0:ro;~/.config/gtk-4.0:ro;~/.themes:ro;~/.fonts:ro;~/.local/share/fonts:ro;/var/mnt;/run/media
-EOF
+EOT
+
     # Create the marker file
     touch "$MARKER_FILE"
     echo "Fixes applied. Marker file created at $MARKER_FILE."
