@@ -101,6 +101,55 @@ sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/e
 # Install mesa-libOpenCL from bazzite-multilib
 rpm-ostree install \
         mesa-libOpenCL && \
+/usr/libexec/containerbuild/cleanup.sh && \
+ostree container commit
+
+# Fix sddm themes by moving and syncing to /var and symlinking to correct location
+# move current location to /usr/share/ublue-os/sddm/themes
+mv /usr/share/sddm/themes /usr/share/ublue-os/sddm/themes
+# symlink sync location to default sddm theme location
+ln -s /var/sddm/themes /usr/share/sddm/themes
+# Create the sddm theme sync script
+cat << 'EOF' > "/usr/libexec/sync-sddm-themes"
+#!/bin/bash
+# Script to sync SDDM themes
+
+SRC_DIR="/usr/share/ublue-os/sddm/themes"
+DEST_DIR="/var/sddm/themes"
+
+# Ensure the destination directory exists
+mkdir -p "$DEST_DIR"
+
+# Sync themes while preserving permissions and timestamps
+rsync -a --delete "$SRC_DIR/" "$DEST_DIR/"
+
+# Exit with status
+exit $?
+EOF
+
+# Make the sync script executable
+chmod +x "/usr/libexec/sync-sddm-themes"
+
+# Create the systemd service
+echo "Creating systemd service at /usr/lib/systemd/system/sync-sddm-themes.service..."
+cat << EOF > "/usr/lib/systemd/system/sync-sddm-themes.service"
+[Unit]
+Description=Sync SDDM Themes from /usr/share to /var
+Before=sddm.service
+ConditionPathExists=/usr/share/ublue-os/sddm/themes
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/sync-sddm-themes
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# enable the service
+systemctl enable sync-sddm-themes.service
+
 # Disable Bazzite-multilib 
 sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=1/enabled=0/}' /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo && \
 /usr/libexec/containerbuild/cleanup.sh && \
