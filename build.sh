@@ -22,9 +22,9 @@ cp /usr/share/applications/org.kde.konsole.desktop /usr/share/kglobalaccel/org.k
 sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.kde.kdeconnect.app.desktop && \
 sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.kde.kdeconnect.sms.desktop && \
 sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.kde.krfb.desktop && \
-#sed -i 's/^NoDisplay=false$/NoDisplay=true/' /usr/share/applications/bazzite-documentation.desktop && \
-#sed -i 's/^NoDisplay=false$/NoDisplay=true/' /usr/share/applications/discourse.desktop && \
-sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/sunshine.desktop && \
+rm /usr/share/applications/bazzite-documentation.desktop && \
+rm /usr/share/applications/discourse.desktop && \
+rm /usr/share/applications/sunshine.desktop && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
