@@ -76,6 +76,52 @@ rpm-ostree install \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
+# User facing fixes for flatpak and more
+# Create the script
+cat << 'EOF' > "/usr/libexec/user-fixes"
+# Directories
+SYSTEM_THEMES="/usr/share/themes"
+USER_THEMES="$HOME/.themes"
+
+# Create the ~/.themes directory if it doesn't exist
+if [ ! -d "$USER_THEMES" ]; then
+    echo "Creating $USER_THEMES directory..."
+    mkdir -p "$USER_THEMES"
+fi
+
+# Synchronize themes from /usr/share/themes to ~/.themes
+echo "Syncing themes from $SYSTEM_THEMES to $USER_THEMES..."
+rsync -av --delete --exclude="Adwaita*" --exclude="Clearlooks" --exclude="Crux" --exclude="HighContrast" --exclude="Industrial" --exclude="Mist" --exclude="Raleigh" --exclude="ThinIce" "$SYSTEM_THEMES/" "$USER_THEMES/"
+
+# Set the correct permissions for the user directory
+echo "Setting correct permissions for $USER_THEMES..."
+chown -R "$USER:$USER" "$USER_THEMES"
+
+echo "Sync complete."
+
+# Exit with status
+exit $?
+EOF
+
+# Make the script executable
+chmod +x "/usr/libexec/user-fixes"
+
+# Create the systemd service
+echo "Creating systemd service at /usr/lib/systemd/system/sync-sddm-themes.service..."
+cat << EOF > "/usr/lib/systemd/user/user-fixes.service"
+[Unit]
+Description=Configure fixes for current user
+
+[Service]
+Type=simple
+ExecStart=/usr/libexec/user-fixes
+
+[Install]
+WantedBy=default.target
+EOF
+
+# enable the service
+systemctl --global enable user-fixes.service
 # Fix sddm themes by moving and syncing to /var and symlinking to correct location
 # move current location to /usr/share/ublue-os/sddm/themes
 mkdir -p "/usr/share/ublue-os/sddm"
