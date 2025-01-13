@@ -56,7 +56,6 @@ ostree container commit
         kcharselect \
         kdebugsettings \
         filelight \
-        unity-gtk3-module \
         ptyxis && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
