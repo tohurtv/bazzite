@@ -29,7 +29,10 @@ rm /usr/share/applications/sunshine.desktop && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
-# Remove packages
+# Remove packages and files related to them
+rm /usr/lib64/libunity-gtk3-parser.so.0.0.0 && \
+rm /usr/lib64/libunity-gtk3-parser.so.0 && \
+rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
  rpm-ostree override remove \
         discover-overlay \
         sunshine \
