@@ -56,14 +56,16 @@ ostree container commit
         kcharselect \
         kdebugsettings \
         filelight \
+        unity-gtk2-module \
+        unity-gtk3-module \
         ptyxis && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
 # Install packages
 rpm-ostree install \
-        unity-gtk2-module \
-        unity-gtk3-module \
+        appmenu-gtk2-module \
+        appmenu-gtk3-module \
         playerctl \
         flatpak-builder \
         patchelf \
