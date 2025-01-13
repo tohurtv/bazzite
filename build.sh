@@ -67,6 +67,7 @@ ostree container commit
 rpm-ostree install \
         appmenu-gtk2-module \
         appmenu-gtk3-module \
+        appmenu-registrar \
         playerctl \
         flatpak-builder \
         patchelf \
