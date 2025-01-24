@@ -19,6 +19,7 @@ sed -i '/<entry name="favorites" type="StringList">/,/<\/entry>/ s/<default>[^<]
 rm /usr/share/kglobalaccel/org.gnome.Ptyxis.desktop && \
 sed -i '/^TerminalApplication=kde-ptyxis$/d' /etc/xdg/kdeglobals && \
 sed -i '/^TerminalService=org.gnome.Ptyxis.desktop$/d' /etc/xdg/kdeglobals && \
+sed -i 's/^NoDisplay=true$/NoDisplay=false/' /usr/share/applications/org.kde.konsole.desktop && \
 cp /usr/share/applications/org.kde.konsole.desktop /usr/share/kglobalaccel/org.kde.konsole.desktop && \
 sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.kde.kdeconnect.app.desktop && \
 sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.kde.kdeconnect.sms.desktop && \
