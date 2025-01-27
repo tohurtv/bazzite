@@ -59,6 +59,7 @@ rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
         kcharselect \
         kdebugsettings \
         waydroid \
+        waydroid-selinux \
         filelight \
         ptyxis && \
 /usr/libexec/containerbuild/cleanup.sh && \
