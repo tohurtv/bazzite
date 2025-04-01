@@ -79,12 +79,12 @@ rpm-ostree install \
 ostree container commit
 
 # Enable Bazzite-multilib 
-sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo && \
+#sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo && \
 # Install mesa-libOpenCL from bazzite-multilib
-rpm-ostree install \
-        mesa-libOpenCL && \
-/usr/libexec/containerbuild/cleanup.sh && \
-ostree container commit
+#rpm-ostree install \
+ #       mesa-libOpenCL && \
+#/usr/libexec/containerbuild/cleanup.sh && \
+#ostree container commit
 
 # User facing fixes for flatpak and more
 # Create the script
@@ -207,7 +207,7 @@ EOF
 systemctl enable sync-sddm-themes.service
 
 # Disable Bazzite-multilib 
-sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=1/enabled=0/}' /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo && \
-/usr/libexec/containerbuild/cleanup.sh && \
-ostree container commit
+#sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=1/enabled=0/}' /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo && \
+#/usr/libexec/containerbuild/cleanup.sh && \
+#ostree container commit
 
