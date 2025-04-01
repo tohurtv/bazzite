@@ -44,8 +44,6 @@ rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
         rom-properties-kf6 \
         rom-properties-thumbnailer-dbus \
         rom-properties-common \
-        libime \
-        libime-data \
         kcharselect \
         kdebugsettings \
         waydroid \
