@@ -50,7 +50,6 @@ rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
         fcitx5-lua \
         fcitx5-qt-qt6gui \
         fcitx5-qt-libfcitx5qt6widgets \
-        fcitx5-configtool \
         libime \
         libime-data \
         fcitx5-mozc \
