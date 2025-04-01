@@ -60,6 +60,8 @@ rpm-ostree install \
         appmenu-registrar \
         playerctl \
         flatpak-builder \
+        wine-core \
+        wine-core.i686 \
         patchelf \
         pamixer && \
 /usr/libexec/containerbuild/cleanup.sh && \
