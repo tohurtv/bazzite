@@ -64,6 +64,7 @@ rpm-ostree install \
         konsole-part \
         wine-core \
         wine-core.i686 \
+        python3-protobuf \
         patchelf \
         pamixer && \
 /usr/libexec/containerbuild/cleanup.sh && \
