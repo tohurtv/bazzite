@@ -60,6 +60,8 @@ rpm-ostree install \
         appmenu-registrar \
         playerctl \
         flatpak-builder \
+        konsole \
+        konsole-part \
         wine-core \
         wine-core.i686 \
         patchelf \
