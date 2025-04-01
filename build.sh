@@ -44,18 +44,8 @@ rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
         rom-properties-kf6 \
         rom-properties-thumbnailer-dbus \
         rom-properties-common \
-        fcitx5 \
-        fcitx5-data \
-        fcitx5-libs \
-        fcitx5-lua \
-        fcitx5-qt-qt6gui \
-        fcitx5-qt-libfcitx5qt6widgets \
         libime \
         libime-data \
-        fcitx5-mozc \
-        fcitx5-chinese-addons \
-        fcitx5-chinese-addons-data \
-        fcitx5-hangul \
         kcharselect \
         kdebugsettings \
         waydroid \
