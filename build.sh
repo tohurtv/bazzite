@@ -60,6 +60,7 @@ rpm-ostree install \
         appmenu-registrar \
         playerctl \
         flatpak-builder \
+        plasma-browser-integration \
         konsole \
         konsole-part \
         wine-core \
