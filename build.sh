@@ -59,6 +59,7 @@ rpm-ostree install \
         appmenu-gtk3-module \
         appmenu-registrar \
         playerctl \
+        gamemode \
         flatpak-builder \
         plasma-browser-integration \
         konsole \
