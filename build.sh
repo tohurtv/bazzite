@@ -46,6 +46,8 @@ rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
         rom-properties-common \
         kcharselect \
         kdebugsettings \
+        kfind \
+        kwrite \
         waydroid \
         waydroid-selinux \
         filelight \
