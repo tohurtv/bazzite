@@ -28,6 +28,9 @@ sed -i 's/^NoDisplay=false$/NoDisplay=true/' /usr/share/applications/waydroid-co
 rm /usr/share/applications/bazzite-documentation.desktop && \
 rm /usr/share/applications/discourse.desktop && \
 rm /usr/share/applications/sunshine.desktop && \
+rm /usr/bin/bazzite-steam && \
+rm /usr/bin/bazzite-steam-bpm && \
+rm /usr/share/applications/bazzite-steam-bpm.desktop && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
@@ -39,6 +42,7 @@ rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
         discover-overlay \
         sunshine \
         lutris \
+        steam \
         input-remapper \
         rom-properties \
         rom-properties-utils \
@@ -202,6 +206,16 @@ EOF
 
 # enable the service
 systemctl enable sync-sddm-themes.service
+
+# Create the steam wrapper for flatpak
+echo "Creating steam wrapper at /usr/bin/steam..."
+cat << EOF > "/usr/bin/steam"
+#!/bin/bash
+flatpak run com.valvesoftware.Steam $@
+EOF
+
+# Make the steam wrapper executable
+chmod +x "/usr/bin/steam"
 
 # Disable Bazzite-multilib 
 #sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=1/enabled=0/}' /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:bazzite-org:bazzite-multilib.repo && \
