@@ -72,6 +72,7 @@ rpm-ostree install \
         plasma-browser-integration \
         konsole \
         konsole-part \
+        v4l-utils \
         wine-core \
         wine-core.i686 \
         python3-protobuf \
