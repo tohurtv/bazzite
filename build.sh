@@ -38,6 +38,7 @@ rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
  rpm-ostree override remove \
         discover-overlay \
         sunshine \
+        lutris \
         input-remapper \
         rom-properties \
         rom-properties-utils \
