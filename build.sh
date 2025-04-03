@@ -43,6 +43,7 @@ rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
         sunshine \
         lutris \
         steam \
+        steam-device-rules \
         input-remapper \
         rom-properties \
         rom-properties-utils \
