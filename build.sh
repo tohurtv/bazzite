@@ -211,7 +211,7 @@ systemctl enable sync-sddm-themes.service
 
 # Create the steam wrapper for flatpak
 echo "Creating steam wrapper at /usr/bin/steam..."
-cat << EOF > "/usr/bin/steam"
+cat << 'EOF' > "/usr/bin/steam"
 #!/bin/bash
 
 # Check if Steam Flatpak is installed
@@ -220,7 +220,7 @@ if flatpak info com.valvesoftware.Steam &>/dev/null; then
 else
     # Prompt user using yad
     yad --title="Steam Flatpak Not Installed" \
-        --button=gtk-no:1 --button=gtk-yes:0 \
+        --button=Yes:0 --button=No:1 \
         --center \
         --text="Steam (Flatpak) is not installed.\n\nDo you want to install it now?"
 
@@ -231,6 +231,7 @@ else
     fi
 fi
 EOF
+
 
 # Make the steam wrapper executable
 chmod +x "/usr/bin/steam"
