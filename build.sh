@@ -216,7 +216,7 @@ cat << EOF > "/usr/bin/steam"
 
 # Check if Steam Flatpak is installed
 if flatpak info com.valvesoftware.Steam &>/dev/null; then
-    flatpak run com.valvesoftware.Steam $@
+    flatpak run com.valvesoftware.Steam "$@"
 else
     # Prompt user using yad
     yad --title="Steam Flatpak Not Installed" \
