@@ -237,20 +237,20 @@ EOF
 chmod +x "/usr/bin/steam"
 
 # Create the steam place holder .desktop to prompt install
-echo "Creating steam wrapper at /usr/share/applications/steam.desktop..."
-cat << EOF > "/usr/share/applications/steam.desktop"
-[Desktop Entry]
-Name=Install Steam
-Comment=Install Steam
-Exec=steam
-Icon=folder-games
-Terminal=false
-Type=Application
-Categories=Network;FileTransfer;Game;
-EOF
+#echo "Creating steam wrapper at /usr/share/applications/steam.desktop..."
+#cat << EOF > "/usr/share/applications/steam.desktop"
+#[Desktop Entry]
+#Name=Install Steam
+#Comment=Install Steam
+#Exec=steam
+#Icon=folder-games
+#Terminal=false
+#Type=Application
+#Categories=Network;FileTransfer;Game;
+#EOF
 
 # Make the steam.desktop executable
-chmod +x "/usr/share/applications/steam.desktop"
+#chmod +x "/usr/share/applications/steam.desktop"
 
 # Disable Bazzite-multilib 
 #sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=1/enabled=0/}' /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:bazzite-org:bazzite-multilib.repo && \
