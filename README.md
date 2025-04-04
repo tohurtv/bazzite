@@ -7,7 +7,8 @@ This repository is a fine tuned [Bazzite](https://bazzite.gg/) image with what I
 # Added tweaks and/or fixes
 - Added ablity to install custom sddm themes by moving them to /var/sddm/themes and then symlinking to /usr/share/sddm/themes.
 - Syncing system themes from /usr/share/themes to $HOME/.themes and added flatpak overrides for GTK theme matching.
-- Added various flatpak overrides for better overall user experience. 
+- Added various flatpak overrides for better overall user experience.
+- Steam and Lutris should be installed from Flatpak as they are removed from the image
 
 # how to use
 
