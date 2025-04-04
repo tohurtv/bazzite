@@ -213,7 +213,23 @@ systemctl enable sync-sddm-themes.service
 echo "Creating steam wrapper at /usr/bin/steam..."
 cat << EOF > "/usr/bin/steam"
 #!/bin/bash
-flatpak run com.valvesoftware.Steam $@
+
+# Check if Steam Flatpak is installed
+if flatpak info com.valvesoftware.Steam &>/dev/null; then
+    flatpak run com.valvesoftware.Steam $@
+else
+    # Prompt user using yad
+    yad --title="Steam Flatpak Not Installed" \
+        --button=gtk-no:1 --button=gtk-yes:0 \
+        --center \
+        --text="Steam (Flatpak) is not installed.\n\nDo you want to install it now?"
+
+    # Check exit code from yad
+    if [ $? -eq 0 ]; then
+        # Open Discover or GNOME Software via AppStream URI
+        xdg-open "appstream://com.valvesoftware.Steam"
+    fi
+fi
 EOF
 
 # Make the steam wrapper executable
