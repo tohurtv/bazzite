@@ -68,6 +68,8 @@ rpm-ostree install \
         appmenu-registrar \
         playerctl \
         gamemode \
+        fwupd \
+        fwupd-efi \
         flatpak-builder \
         plasma-browser-integration \
         konsole \
