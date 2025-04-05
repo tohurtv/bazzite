@@ -31,6 +31,8 @@ rm /usr/share/applications/sunshine.desktop && \
 rm /usr/bin/bazzite-steam && \
 rm /usr/bin/bazzite-steam-bpm && \
 rm /usr/share/applications/bazzite-steam-bpm.desktop && \
+cp /usr/share/applications/steam.desktop /usr/share/applications/steam-bk.desktop && \
+cp /usr/share/icons/hicolor/256x256/apps/steam.png /usr/share/icons/hicolor/256x256/apps/steam-bk.png && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
@@ -238,18 +240,11 @@ EOF
 # Make the steam wrapper executable
 chmod +x "/usr/bin/steam"
 
-# Create the steam place holder .desktop to prompt install
-#echo "Creating steam wrapper at /usr/share/applications/steam.desktop..."
-#cat << EOF > "/usr/share/applications/steam.desktop"
-#[Desktop Entry]
-#Name=Install Steam
-#Comment=Install Steam
-#Exec=steam
-#Icon=folder-games
-#Terminal=false
-#Type=Application
-#Categories=Network;FileTransfer;Game;
-#EOF
+# Move steam.desktop and steam.png to proper locations
+mv /usr/share/applications/steam-bk.desktop /usr/share/applications/steam.desktop && \
+mv /usr/share/icons/hicolor/256x256/apps/steam-bk.png /usr/share/icons/hicolor/256x256/apps/steam.png && \
+/usr/libexec/containerbuild/cleanup.sh && \
+ostree container commit
 
 # Make the steam.desktop executable
 #chmod +x "/usr/share/applications/steam.desktop"
