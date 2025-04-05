@@ -31,8 +31,8 @@ rm /usr/share/applications/sunshine.desktop && \
 rm /usr/bin/bazzite-steam && \
 rm /usr/bin/bazzite-steam-bpm && \
 rm /usr/share/applications/bazzite-steam-bpm.desktop && \
-cp /usr/share/applications/steam.desktop /usr/share/applications/steam-bk.desktop && \
-cp /usr/share/icons/hicolor/256x256/apps/steam.png /usr/share/icons/hicolor/256x256/apps/steam-bk.png && \
+#cp /usr/share/applications/steam.desktop /usr/share/applications/steam-bk.desktop && \
+#cp /usr/share/icons/hicolor/256x256/apps/steam.png /usr/share/icons/hicolor/256x256/apps/steam-bk.png && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
 
@@ -241,10 +241,10 @@ EOF
 chmod +x "/usr/bin/steam"
 
 # Move steam.desktop and steam.png to proper locations
-mv /usr/share/applications/steam-bk.desktop /usr/share/applications/steam.desktop && \
-mv /usr/share/icons/hicolor/256x256/apps/steam-bk.png /usr/share/icons/hicolor/256x256/apps/steam.png && \
-/usr/libexec/containerbuild/cleanup.sh && \
-ostree container commit
+#mv /usr/share/applications/steam-bk.desktop /usr/share/applications/steam.desktop && \
+#mv /usr/share/icons/hicolor/256x256/apps/steam-bk.png /usr/share/icons/hicolor/256x256/apps/steam.png && \
+#/usr/libexec/containerbuild/cleanup.sh && \
+#ostree container commit
 
 # Make the steam.desktop executable
 #chmod +x "/usr/share/applications/steam.desktop"
