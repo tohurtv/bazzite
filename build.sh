@@ -78,6 +78,7 @@ rpm-ostree install \
         wine-core \
         wine-core.i686 \
         mesa-libOpenCL \
+        mesa-libgbm \
         python3-protobuf \
         patchelf \
         pamixer && \
