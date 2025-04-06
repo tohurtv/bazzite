@@ -65,9 +65,6 @@ ostree container commit
 
 # Install packages
 rpm-ostree install \
-        appmenu-gtk2-module \
-        appmenu-gtk3-module \
-        appmenu-registrar \
         playerctl \
         gamemode \
         fwupd \
