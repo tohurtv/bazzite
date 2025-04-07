@@ -9,5 +9,4 @@ dnf5 install -y \
        rocminfo \
        rocm-opencl \
        rocm-clinfo \
-       rocm-hip \
-       pamixer
+       rocm-hip
