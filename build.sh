@@ -78,6 +78,30 @@ rpm-ostree install \
         wine-core.i686 \
         python3-protobuf \
         patchelf \
+        hipblas-devel \
+        hipblaslt-devel \
+        hipcc \
+        hipcub-devel \
+        hipfft-devel \
+        hiprand-devel \
+        hipsolver-devel \
+        hipsparse-devel \
+        rocalution-devel \
+        rocblas-devel \
+        rocfft-devel \
+        rocm-cmake \
+        rocm-comgr-devel \
+        rocm-core-devel \
+        rocm-hip-devel \
+        rocm-llvm-devel \
+        rocm-runtime-devel \
+        rocm-smi-devel \
+        rocminfo rocprim-devel \
+        rocrand-devel \
+        rocsolver-devel \
+        rocsparse-devel \
+        roctracer-devel \
+        miopen \
         pamixer && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
