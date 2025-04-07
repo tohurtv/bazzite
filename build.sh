@@ -34,10 +34,6 @@ rm /usr/share/applications/bazzite-steam-bpm.desktop && \
 #cp /usr/share/applications/steam.desktop /usr/share/applications/steam-bk.desktop && \
 #cp /usr/share/icons/hicolor/256x256/apps/steam.png /usr/share/icons/hicolor/256x256/apps/steam-bk.png && \
 
-# Remove packages and files related to them
-rm /usr/lib64/libunity-gtk3-parser.so.0.0.0 && \
-rm /usr/lib64/libunity-gtk3-parser.so.0 && \
-rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
 dnf5 remove -y \
        discover-overlay \
        sunshine \
@@ -74,6 +70,7 @@ dnf5 install -y \
        v4l-utils \
        wine-core \
        wine-core.i686 \
+       mesa-libOpenCL \
        python3-protobuf \
        patchelf \
        rocminfo \
