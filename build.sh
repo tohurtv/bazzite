@@ -33,68 +33,55 @@ rm /usr/bin/bazzite-steam-bpm && \
 rm /usr/share/applications/bazzite-steam-bpm.desktop && \
 #cp /usr/share/applications/steam.desktop /usr/share/applications/steam-bk.desktop && \
 #cp /usr/share/icons/hicolor/256x256/apps/steam.png /usr/share/icons/hicolor/256x256/apps/steam-bk.png && \
-/usr/libexec/containerbuild/cleanup.sh && \
-ostree container commit
 
 # Remove packages and files related to them
 rm /usr/lib64/libunity-gtk3-parser.so.0.0.0 && \
 rm /usr/lib64/libunity-gtk3-parser.so.0 && \
 rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
- rpm-ostree override remove \
-        discover-overlay \
-        sunshine \
-        lutris \
-        steam \
-        steam-device-rules \
-        input-remapper \
-        rom-properties \
-        rom-properties-utils \
-        rom-properties-kf6 \
-        rom-properties-thumbnailer-dbus \
-        rom-properties-common \
-        kcharselect \
-        kdebugsettings \
-        kfind \
-        kwrite \
-        fcitx5 \
-        waydroid \
-        waydroid-selinux \
-        filelight \
-        ptyxis && \
-/usr/libexec/containerbuild/cleanup.sh && \
-ostree container commit
+dnf5 remove \
+       discover-overlay \
+       sunshine \
+       lutris \
+       steam \
+       steam-device-rules \
+       input-remapper \
+       rom-properties \
+       rom-properties-utils \
+       rom-properties-kf6 \
+       rom-properties-thumbnailer-dbus \
+       rom-properties-common \
+       kcharselect \
+       kdebugsettings \
+       kfind \
+       kwrite \
+       fcitx5 \
+       fcitx5-mozc \
+       waydroid \
+       waydroid-selinux \
+       filelight \
+       ptyxis
 
 # Install packages
-rpm-ostree install \
-        playerctl \
-        gamemode \
-        fwupd \
-        fwupd-efi \
-        flatpak-builder \
-        plasma-browser-integration \
-        konsole \
-        konsole-part \
-        v4l-utils \
-        wine-core \
-        wine-core.i686 \
-        python3-protobuf \
-        patchelf \
-        rocminfo \
-        rocm-opencl \
-        rocm-clinfo \
-        rocm-hip \
-        pamixer && \
-/usr/libexec/containerbuild/cleanup.sh && \
-ostree container commit
-
-# Enable Bazzite-multilib 
-#sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:bazzite-org:bazzite-multilib.repo && \
-# Install mesa-libOpenCL from bazzite-multilib
-#rpm-ostree install \
-#        mesa-libOpenCL && \
-#/usr/libexec/containerbuild/cleanup.sh && \
-#ostree container commit
-
+dnf5 install \
+       playerctl \
+       gamemode \
+       fwupd \
+       fwupd-efi \
+       flatpak-builder \
+       plasma-browser-integration \
+       konsole \
+       konsole-part \
+       v4l-utils \
+       wine-core \
+       wine-core.i686 \
+       python3-protobuf \
+       patchelf \
+       rocminfo \
+       rocm-opencl \
+       rocm-clinfo \
+       rocm-hip \
+       pamixer
+       
 # User facing fixes for flatpak and more
 # Create the script
 # Write the content to the file
@@ -250,9 +237,3 @@ chmod +x "/usr/bin/steam"
 
 # Make the steam.desktop executable
 #chmod +x "/usr/share/applications/steam.desktop"
-
-# Disable Bazzite-multilib 
-#sed -i '/\[copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib\]/,/\[/{s/enabled=1/enabled=0/}' /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:bazzite-org:bazzite-multilib.repo && \
-#/usr/libexec/containerbuild/cleanup.sh && \
-ostree container commit
-
