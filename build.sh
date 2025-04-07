@@ -38,7 +38,7 @@ rm /usr/share/applications/bazzite-steam-bpm.desktop && \
 rm /usr/lib64/libunity-gtk3-parser.so.0.0.0 && \
 rm /usr/lib64/libunity-gtk3-parser.so.0 && \
 rm /usr/lib64/gtk-3.0/modules/libunity-gtk-module.so && \
-dnf5 remove \
+dnf5 remove -y \
        discover-overlay \
        sunshine \
        lutris \
@@ -62,7 +62,7 @@ dnf5 remove \
        ptyxis
 
 # Install packages
-dnf5 install \
+dnf5 install -y \
        playerctl \
        gamemode \
        fwupd \
