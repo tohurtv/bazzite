@@ -70,7 +70,6 @@ dnf5 install -y \
        v4l-utils \
        wine-core \
        wine-core.i686 \
-       mesa-libOpenCL \
        python3-protobuf \
        patchelf \
        rocminfo \
