@@ -82,7 +82,6 @@ rpm-ostree install \
         rocm-opencl \
         rocm-clinfo \
         rocm-hip \
-        rocblas \
         pamixer && \
 /usr/libexec/containerbuild/cleanup.sh && \
 ostree container commit
