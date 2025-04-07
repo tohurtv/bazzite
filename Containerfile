@@ -23,7 +23,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build.sh && \
-    chmod u+x /ctx/amd.sh && \
     /ctx/amd.sh && \
     ostree container commit
     
