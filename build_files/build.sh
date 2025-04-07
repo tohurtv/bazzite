@@ -72,12 +72,8 @@ dnf5 install -y \
        wine-core.i686 \
        python3-protobuf \
        patchelf \
-       rocminfo \
-       rocm-opencl \
-       rocm-clinfo \
-       rocm-hip \
        pamixer
-       
+
 # User facing fixes for flatpak and more
 # Create the script
 # Write the content to the file
