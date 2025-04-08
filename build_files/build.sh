@@ -49,6 +49,7 @@ dnf5 remove -y \
        kcharselect \
        kdebugsettings \
        kfind \
+       kjournald \
        kwrite \
        fcitx5 \
        fcitx5-mozc \
