@@ -61,6 +61,7 @@ dnf5 remove -y \
 dnf5 install -y \
        playerctl \
        gamemode \
+       cabextract \
        fwupd \
        fwupd-efi \
        flatpak-builder \
