@@ -69,6 +69,8 @@ dnf5 install -y \
        plasma-browser-integration \
        konsole \
        konsole-part \
+       nodejs \
+       nodejs-npm \
        v4l-utils \
        wine-core \
        wine-core.i686 \
