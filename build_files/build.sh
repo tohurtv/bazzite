@@ -113,6 +113,11 @@ else
 
     # Add your commands here
     echo "Running your commands..."
+
+    #Install Steam and Lutris flatpaks
+    flatpak install com.valvesoftware.Steam
+    flatpak install net.lutris.Lutris
+
     # Apply global flatpak overrides for user
     mkdir -p "$HOME/.local/share/flatpak/overrides"
 cat << EOT > "$HOME/.local/share/flatpak/overrides/global"
