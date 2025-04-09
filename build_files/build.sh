@@ -71,6 +71,7 @@ dnf5 install -y \
        konsole-part \
        nodejs \
        nodejs-npm \
+       git-lfs \
        v4l-utils \
        wine-core \
        wine-core.i686 \
