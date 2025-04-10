@@ -66,6 +66,8 @@ dnf5 install -y \
        fwupd \
        fwupd-efi \
        flatpak-builder \
+       gperftools-libs \
+       libglvnd-glx \
        plasma-browser-integration \
        konsole \
        konsole-part \
