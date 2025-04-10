@@ -68,6 +68,7 @@ dnf5 install -y \
        flatpak-builder \
        gperftools-libs \
        libglvnd-glx \
+       python3.11 \
        plasma-browser-integration \
        konsole \
        konsole-part \
