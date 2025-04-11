@@ -242,3 +242,7 @@ chmod +x "/usr/bin/steam"
 
 # Make the steam.desktop executable
 #chmod +x "/usr/share/applications/steam.desktop"
+
+## Zerotier
+curl -s 'https://raw.githubusercontent.com/zerotier/ZeroTierOne/main/doc/contact%40zerotier.com.gpg' | gpg --import &amp;&amp; \
+if z=$(curl -s 'https://install.zerotier.com/' | gpg); then echo "$z" | bash; fi
