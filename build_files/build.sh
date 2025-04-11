@@ -12,7 +12,15 @@ set -ouex pipefail
 # Add Repos
 curl -Lo /etc/yum.repos.d/mullvad.repo https://repository.mullvad.net/rpm/stable/mullvad.repo
 curl -Lo /etc/yum.repos.d/home:tohur:bazzite.repo https://download.opensuse.org/repositories/home:/tohur:/bazzite/Fedora_41/home:tohur:bazzite.repo
-
+# Add Zeroteir Repo
+# Create the steam wrapper for flatpak
+cat << 'EOF' > "/etc/yum.repos.d/zerotier.repo"
+[zerotier]
+name=ZeroTier, Inc. RPM Release Repository
+baseurl=http://download.zerotier.com/redhat/fc/41
+enabled=1
+gpgcheck=1
+EOF
 # Clean up stuff from Bazzite Upstream and add sone extra fixes
 sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,applications:org.kde.discover.desktop,preferred:\/\/filemanager<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml && \
 sed -i '/<entry name="favorites" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,systemsettings.desktop,org.kde.dolphin.desktop,org.kde.kate.desktop,terminal,org.kde.discover.desktop,system-update.desktop<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.kickoff/contents/config/main.xml && \
@@ -78,6 +86,7 @@ dnf5 install -y \
        v4l-utils \
        wine-core \
        wine-core.i686 \
+       zerotier-one \
        python3-protobuf \
        patchelf \
        pamixer
@@ -242,7 +251,3 @@ chmod +x "/usr/bin/steam"
 
 # Make the steam.desktop executable
 #chmod +x "/usr/share/applications/steam.desktop"
-
-## Zerotier
-curl -s 'https://raw.githubusercontent.com/zerotier/ZeroTierOne/main/doc/contact%40zerotier.com.gpg' | gpg --import &amp;&amp; \
-if z=$(curl -s 'https://install.zerotier.com/' | gpg); then echo "$z" | bash; fi
