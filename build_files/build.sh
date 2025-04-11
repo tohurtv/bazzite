@@ -13,13 +13,12 @@ set -ouex pipefail
 curl -Lo /etc/yum.repos.d/mullvad.repo https://repository.mullvad.net/rpm/stable/mullvad.repo
 curl -Lo /etc/yum.repos.d/home:tohur:bazzite.repo https://download.opensuse.org/repositories/home:/tohur:/bazzite/Fedora_41/home:tohur:bazzite.repo
 # Add Zeroteir Repo
-# Create the steam wrapper for flatpak
 cat << 'EOF' > "/etc/yum.repos.d/zerotier.repo"
 [zerotier]
 name=ZeroTier, Inc. RPM Release Repository
 baseurl=http://download.zerotier.com/redhat/fc/41
 enabled=1
-gpgcheck=1
+gpgcheck=0
 EOF
 # Clean up stuff from Bazzite Upstream and add sone extra fixes
 sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,applications:org.kde.discover.desktop,preferred:\/\/filemanager<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml && \
