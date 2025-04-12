@@ -99,6 +99,9 @@ dnf5 install -y \
        patchelf \
        pamixer
 
+dnf5 install -y --no-gpgchecks \
+       mesa-libOpenCL
+
 # User facing fixes for flatpak and more
 # Create the script
 # Write the content to the file
@@ -146,6 +149,18 @@ else
 cat << EOT > "$HOME/.local/share/flatpak/overrides/global"
 [Context]
 filesystems=xdg-run/udev:ro;~/Games;~/.icons:ro;xdg-config/gtk-3.0;~/.config/gtk-3.0:ro;~/.config/gtk-4.0:ro;~/.themes:ro;~/.fonts:ro;~/.local/share/fonts:ro;/var/mnt;/run/media
+EOT
+
+cat << EOT > "$HOME/.config/pulse/default.pa"
+.include /etc/pulse/default.pa
+.nofail
+unload-module module-suspend-on-idle
+.fail
+EOT
+
+cat << EOT > "$HOME/.config/pulse/daemon.conf"
+.include /etc/pulse/daemon.conf
+default-sample-rate = 48000
 EOT
 
     # Create the marker file
