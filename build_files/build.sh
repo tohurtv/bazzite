@@ -162,7 +162,8 @@ cat << EOT > "$HOME/.config/pulse/daemon.conf"
 .include /etc/pulse/daemon.conf
 default-sample-rate = 48000
 EOT
-
+    pulseaudio -k
+    
     # Create the marker file
     touch "$MARKER_FILE"
     echo "Fixes applied. Marker file created at $MARKER_FILE."
