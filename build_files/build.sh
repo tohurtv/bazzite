@@ -43,6 +43,7 @@ rm /usr/share/applications/bazzite-steam-bpm.desktop && \
 
 #swap back to pulseaudio
 dnf5 swap -y --allowerasing pipewire-pulseaudio pulseaudio
+dnf5 install -y pulseaudio-libs
 
 dnf5 remove -y \
        discover-overlay \
