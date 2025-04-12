@@ -41,6 +41,9 @@ rm /usr/share/applications/bazzite-steam-bpm.desktop && \
 #cp /usr/share/applications/steam.desktop /usr/share/applications/steam-bk.desktop && \
 #cp /usr/share/icons/hicolor/256x256/apps/steam.png /usr/share/icons/hicolor/256x256/apps/steam-bk.png && \
 
+#swap back to pulseaudio
+dnf5 swap --allowerasing pipewire-pulseaudio pulseaudio
+
 dnf5 remove -y \
        discover-overlay \
        sunshine \
