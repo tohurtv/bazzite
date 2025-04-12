@@ -81,6 +81,11 @@ dnf5 install -y \
        konsole-part \
        nodejs \
        nodejs-npm \
+       libaio-devel \
+       espeak-ng \
+       ffmpeg \
+       gcc \
+       g++ \
        git-lfs \
        v4l-utils \
        wine-core \
