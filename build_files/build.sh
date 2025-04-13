@@ -72,6 +72,7 @@ dnf5 remove -y \
 # Install packages
 dnf5 install -y \
        playerctl \
+       mpris-scrobbler \
        gamemode \
        cabextract \
        fwupd \
