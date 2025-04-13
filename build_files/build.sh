@@ -276,6 +276,3 @@ chmod +x "/usr/bin/steam"
 
 # Make the steam.desktop executable
 #chmod +x "/usr/share/applications/steam.desktop"
-
-# Remove Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
