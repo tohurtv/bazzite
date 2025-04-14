@@ -278,6 +278,6 @@ chmod +x "/usr/bin/steam"
 #chmod +x "/usr/share/applications/steam.desktop"
 
 # remove brew
-curl -Lo /tmp/brew-uninstall https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh && \
-    chmod +x /tmp/brew-uninstall && \
-    /tmp/brew-uninstall --force --path=/var/home/linuxbrew/.linuxbrew
+#curl -Lo /tmp/brew-uninstall https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh && \
+#    chmod +x /tmp/brew-uninstall && \
+#   /tmp/brew-uninstall --force --path=/var/home/linuxbrew/.linuxbrew
