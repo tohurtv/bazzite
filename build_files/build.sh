@@ -276,3 +276,9 @@ chmod +x "/usr/bin/steam"
 
 # Make the steam.desktop executable
 #chmod +x "/usr/share/applications/steam.desktop"
+
+# remove brew
+--mount=type=tmpfs,dst=/tmp \
+curl -Lo /tmp/brew-uninstall https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh && \
+    chmod +x /tmp/brew-uninstall && \
+    /tmp/brew-uninstall --force
