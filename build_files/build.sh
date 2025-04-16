@@ -89,6 +89,7 @@ dnf5 install -y \
        nodejs \
        nodejs-npm \
        libaio-devel \
+       libFAudio \
        espeak-ng \
        ffmpeg \
        gcc \
