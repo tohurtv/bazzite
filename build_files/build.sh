@@ -72,6 +72,8 @@ dnf5 remove -y \
 # Install packages
 dnf5 install -y \
        playerctl \
+       aspnetcore-runtime-9.0 \
+       aspnetcore-runtime-8.0 \
        mpris-scrobbler \
        gamemode \
        cabextract \
