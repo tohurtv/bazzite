@@ -86,6 +86,7 @@ dnf5 install -y \
        konsole-part \
        nodejs \
        nodejs-npm \
+       mullvad-vpn \
        libaio-devel \
        espeak-ng \
        ffmpeg \
