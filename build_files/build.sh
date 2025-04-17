@@ -61,6 +61,7 @@ dnf5 remove -y \
        kdebugsettings \
        kfind \
        kjournald \
+       webapp-manager \
        kwrite \
        fcitx5 \
        fcitx5-mozc \
