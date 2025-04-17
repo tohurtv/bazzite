@@ -57,6 +57,7 @@ dnf5 remove -y \
        rom-properties-kf6 \
        rom-properties-thumbnailer-dbus \
        rom-properties-common \
+       ark \
        kcharselect \
        kdebugsettings \
        kfind \
@@ -213,7 +214,8 @@ else
  # Add your commands here
     echo "Running your commands..."
 
-    #Install Steam and Lutris flatpaks
+    #Install flatpaks
+    flatpak install -y org.kde.ark
     flatpak install -y com.valvesoftware.Steam
     flatpak install -y net.lutris.Lutris
 
