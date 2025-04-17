@@ -145,29 +145,12 @@ else
     # Add your commands here
     echo "Running your commands..."
 
-    #Install Steam and Lutris flatpaks
-    flatpak install -y com.valvesoftware.Steam
-    flatpak install -y net.lutris.Lutris
-
     # Apply global flatpak overrides for user
     mkdir -p "$HOME/.local/share/flatpak/overrides"
 cat << EOT > "$HOME/.local/share/flatpak/overrides/global"
 [Context]
 filesystems=xdg-run/udev:ro;~/Games;~/.icons:ro;xdg-config/gtk-3.0;~/.config/gtk-3.0:ro;~/.config/gtk-4.0:ro;~/.themes:ro;~/.fonts:ro;~/.local/share/fonts:ro;/var/mnt;/run/media
 EOT
-
-cat << EOT > "$HOME/.config/pulse/default.pa"
-.include /etc/pulse/default.pa
-.nofail
-unload-module module-suspend-on-idle
-.fail
-EOT
-
-cat << EOT > "$HOME/.config/pulse/daemon.conf"
-.include /etc/pulse/daemon.conf
-default-sample-rate = 48000
-EOT
-    pulseaudio -k
     
     # Create the marker file
     touch "$MARKER_FILE"
@@ -204,10 +187,11 @@ mkdir -p "/usr/share/ublue-os/sddm"
 mv /usr/share/sddm/themes /usr/share/ublue-os/sddm/
 # symlink sync location to default sddm theme location
 ln -s /var/sddm/themes /usr/share/sddm/themes
-# Create the sddm theme sync script
-cat << 'EOF' > "/usr/libexec/sync-sddm-themes"
+
+# Create the system tweaks/fixes script
+cat << 'EOF' > "/usr/libexec/system-tweaks"
 #!/bin/bash
-# Script to sync SDDM themes
+# sync SDDM themes
 
 SRC_DIR="/usr/share/ublue-os/sddm/themes"
 DEST_DIR="/var/sddm/themes"
@@ -218,24 +202,45 @@ mkdir -p "$DEST_DIR"
 # Sync themes while preserving permissions and timestamps
 rsync -au "$SRC_DIR/" "$DEST_DIR/"
 
+# Path to the marker file
+MARKER_FILE="/etc/tweaks-done"
+
+# Check if the marker file exists
+if [[ -f "$MARKER_FILE" ]]; then
+    echo "Fixes already applied. Exiting."
+    exit 0
+else
+ # Add your commands here
+    echo "Running your commands..."
+
+    #Install Steam and Lutris flatpaks
+    flatpak install -y com.valvesoftware.Steam
+    flatpak install -y net.lutris.Lutris
+
+    # Create the marker file
+    touch "$MARKER_FILE"
+    echo "Fixes applied. Marker file created at $MARKER_FILE."
+fi
+
 # Exit with status
 exit $?
 EOF
+EOF
 
 # Make the sync script executable
-chmod +x "/usr/libexec/sync-sddm-themes"
+chmod +x "/usr/libexec/system-tweaks"
 
 # Create the systemd service
-echo "Creating systemd service at /usr/lib/systemd/system/sync-sddm-themes.service..."
-cat << EOF > "/usr/lib/systemd/system/sync-sddm-themes.service"
+echo "Creating systemd service at /usr/lib/systemd/system/system-tweaks.service..."
+cat << EOF > "/usr/lib/systemd/system/system-tweaks.service"
 [Unit]
-Description=Sync SDDM Themes from /usr/share to /var
+Description=System Tweaks
 Before=sddm.service
 ConditionPathExists=/usr/share/ublue-os/sddm/themes
 
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/sync-sddm-themes
+ExecStart=/usr/libexec/system-tweaks
 RemainAfterExit=true
 
 [Install]
@@ -243,7 +248,7 @@ WantedBy=multi-user.target
 EOF
 
 # enable the service
-systemctl enable sync-sddm-themes.service
+systemctl enable system-tweaks.service
 
 # Create the steam wrapper for flatpak
 echo "Creating steam wrapper at /usr/bin/steam..."
