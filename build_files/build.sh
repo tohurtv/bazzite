@@ -218,7 +218,8 @@ else
     flatpak install -y org.kde.ark
     flatpak install -y com.valvesoftware.Steam
     flatpak install -y net.lutris.Lutris
-
+    flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
+    flatpak install -y org.freedesktop.Platform.VulkanLayer.OBSVkCapture
     # Create the marker file
     touch "$MARKER_FILE"
     echo "Fixes applied. Marker file created at $MARKER_FILE."
