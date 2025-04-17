@@ -223,7 +223,7 @@ else
 fi
 
 # Exit with status
-exit $?Z
+exit $?
 EOF
 
 # Make the sync script executable
