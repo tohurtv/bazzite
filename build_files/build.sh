@@ -305,6 +305,9 @@ ExecStopPost=chattr +i /
 WantedBy=local-fs.target
 EOF
 
+# Enable it
+systemctl enable mkdir-mnt.service
+
 # Create mount unit
 cat > /etc/systemd/system/var-mnt.mount << 'EOF'
 [Unit]
