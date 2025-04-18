@@ -288,32 +288,33 @@ EOF
 # enable the service
 systemctl enable system-tweaks.service
 
-# Enable mounts on /
-cat > /etc/systemd/system/mkdir-mnt.service << 'EOF'
+# Enable mounts on /mnt
+cat > /etc/systemd/system/setup-mnt-dir.service << 'EOF'
 [Unit]
-Description=Enable mount points in / for OSTree
+Description=Prepare /mnt for bind mount
 DefaultDependencies=no
-Before=local-fs.target
+Before=local-fs-pre.target
 
 [Service]
 Type=oneshot
 ExecStartPre=chattr -i /
-ExecStart=/bin/sh -c "rm -rf /mnt; mkdir -p /mnt"
+ExecStart=/bin/sh -c "rm -rf /mnt && mkdir -p /mnt"
 ExecStopPost=chattr +i /
 
 [Install]
-WantedBy=local-fs.target
+WantedBy=local-fs-pre.target
 EOF
 
 # Enable it
-systemctl enable mkdir-mnt.service
+systemctl enable setup-mnt-dir.service
 
 # Create mount unit
 cat > /etc/systemd/system/var-mnt.mount << 'EOF'
 [Unit]
-Description=Bind mount /var/mnt to /mnt
-After=mkdir-mnt.service
-Wants=mkdir-mnt.service
+Description=Bind /var/mnt to /mnt
+After=setup-mnt-dir.service
+Requires=setup-mnt-dir.service
+Before=local-fs.target
 
 [Mount]
 What=/var/mnt
@@ -322,7 +323,7 @@ Type=none
 Options=bind
 
 [Install]
-WantedBy=mkdir-mnt.service
+WantedBy=local-fs.target
 EOF
 
 # Enable it
