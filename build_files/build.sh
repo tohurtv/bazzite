@@ -87,6 +87,7 @@ dnf5 install -y \
        libglvnd-glx \
        python3.11 \
        plasma-browser-integration \
+       plasma-discover-snap \
        konsole \
        konsole-part \
        nodejs \
@@ -238,8 +239,19 @@ EOT
 
 systemctl enable --now snap-symlink
 
-snap set system homedirs=/var/home
+if [[ -d /var/lib/snapd ]]; then
+    echo "snaps dir exists."
+    exit 0
+else
+  mkdir -p /var/lib/snapd
+fi
 
+if [[ -d /var/lib/snapd/void ]]; then
+    echo "snaps void dir exists."
+    exit 0
+else
+  mkdir -p /var/lib/snapd/void
+fi
     # Create the marker file
     touch "$MARKER_FILE"
     echo "Fixes applied. Marker file created at $MARKER_FILE."
