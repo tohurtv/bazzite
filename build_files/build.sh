@@ -285,8 +285,6 @@ chmod +x "/usr/bin/steam"
 # symlink /var/lib/snapd/snap to /snap
 ln -sf /var/lib/snapd/snap /snap
 
-#delete /home symlink
-rm -f /home
 #mkdir new home mount point
 mkdir -p /home
 
