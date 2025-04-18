@@ -111,7 +111,7 @@ dnf5 install -y --no-gpgchecks \
 
 #disable snapd services for now
 systemctl disable --now snapd.socket
-systemctl disable --now snapd.session-agent
+systemctl disable snapd.session-agent
 # User facing fixes for flatpak and more
 # Create the script
 # Write the content to the file
