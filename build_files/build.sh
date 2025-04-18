@@ -110,7 +110,7 @@ dnf5 install -y --no-gpgchecks \
        mesa-libOpenCL
 
 #disable snapd services for now
-systemctl disable --now snapd.socket
+systemctl disable snapd.socket
 systemctl disable snapd.session-agent
 # User facing fixes for flatpak and more
 # Create the script
