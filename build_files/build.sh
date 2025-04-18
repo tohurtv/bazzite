@@ -32,6 +32,7 @@ sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/appl
 sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.kde.kdeconnect.sms.desktop && \
 sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.kde.krfb.desktop && \
 sed -i 's/^NoDisplay=false$/NoDisplay=true/' /usr/share/applications/waydroid-container-restart.desktop && \
+sed -i 's/--backends flatpak-backend //g' /usr/share/applications/org.kde.discover.desktop && \
 rm /usr/share/applications/bazzite-documentation.desktop && \
 rm /usr/share/applications/discourse.desktop && \
 rm /usr/share/applications/sunshine.desktop && \
