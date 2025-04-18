@@ -289,7 +289,7 @@ EOF
 systemctl enable system-tweaks.service
 
 # Enable mounts on /
-cat > /usr/lib/systemd/system/mkdir-rootfs@.service << 'EOF'
+cat > /etc/systemd/system/mkdir-rootfs@.service << 'EOF'
 [Unit]
 Description=Enable mount points in / for OSTree
 DefaultDependencies=no
@@ -301,7 +301,7 @@ ExecStopPost=chattr +i /
 EOF
 
 # Create mount unit
-cat > /usr/lib/systemd/system/var-mnt.mount << 'EOF'
+cat > /etc/systemd/system/var-mnt.mount << 'EOF'
 [Unit]
 After=mkdir-rootfs@var-mnt.service
 Wants=mkdir-rootfs@var-mnt.service
