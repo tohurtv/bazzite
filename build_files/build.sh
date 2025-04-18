@@ -109,9 +109,6 @@ dnf5 install -y \
 dnf5 install -y --no-gpgchecks \
        mesa-libOpenCL
 
-#disable snapd services for now
-systemctl disable snapd.socket
-systemctl disable --user snapd.session-agent
 # User facing fixes for flatpak and more
 # Create the script
 # Write the content to the file
@@ -224,75 +221,6 @@ else
     flatpak install -y net.lutris.Lutris
     flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
     flatpak install -y org.freedesktop.Platform.VulkanLayer.OBSVkCapture
-    
-    
-# create snapd service files
-echo "Creating systemd service at /etc/systemd/system/mkdir-rootfs@.service..."
-cat << EOT > "/etc/systemd/system/mkdir-rootfs@.service"
-[Unit]
-Description=Enable mount points in / for OSTree
-DefaultDependencies=no
-[Service]
-Type=oneshot
-ExecStartPre=chattr -i /
-ExecStart=/bin/sh -c "[ -L '%f' ] && rm '%f'; mkdir -p '%f'"
-ExecStopPost=chattr +i /
-EOT
-
-echo "Creating systemd service at /etc/systemd/system/snap.mount..."
-cat << EOT > "/etc/systemd/system/snap.mount"
-[Unit]
-After=mkdir-rootfs@snap.service
-Wants=mkdir-rootfs@snap.service
-Before=snapd.socket
-[Mount]
-What=/var/lib/snapd/snap
-Where=/snap
-Options=bind
-Type=none
-[Install]
-WantedBy=snapd.socket
-EOT
-
-echo "Creating systemd service at /etc/systemd/system/snap-symlink.service..."
-cat << EOT > "/etc/systemd/system/snap-symlink.service"
-[Unit]
-Description=Creates /snap symlink for OSTree
-DefaultDependencies=no
-[Service]
-Type=oneshot
-ExecStartPre=chattr -i /
-ExecStart=/usr/bin/ln -sf /var/lib/snapd/snap /
-ExecStartPost=chattr +i /
-[Install]
-WantedBy=snapd.socket
-EOT
-
-echo "Creating systemd service at /etc/systemd/system/home.mount..."
-cat << EOT > "/etc/systemd/system/home.mount"
-[Unit]
-After=mkdir-rootfs@home.service
-Wants=mkdir-rootfs@home.service
-Before=snapd.socket
-[Mount]
-What=/var/home
-Where=/home
-Options=bind
-Type=none
-[Install]
-WantedBy=snapd.socket
-EOT
-
-cp /etc/passwd /etc/passwd.bak &&
-sed -i 's:/var/home:/home:' /etc/passwd
-
-systemctl daemon-reload &&
-for service in home.mount snap.mount snap-symlink.service; do
-    systemctl enable --now "$service"
-done
-
-systemctl enable --user --global snapd.session-agent
-
     # Create the marker file
     touch "$MARKER_FILE"
     echo "Fixes applied. Marker file created at $MARKER_FILE."
@@ -352,7 +280,8 @@ EOF
 # Make the steam wrapper executable
 chmod +x "/usr/bin/steam"
 
-rm -f /home
+# symlink /var/lib/snapd/snap to /snap
+ln -s /var/lib/snapd/snap /snap
 
 # remove brew
 #curl -Lo /tmp/brew-uninstall https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh && \
