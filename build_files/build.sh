@@ -259,6 +259,9 @@ fi
     echo "Fixes applied. Marker file created at $MARKER_FILE."
 fi
 
+snap set system experimental.user-daemons=true
+snap set system experimental.dbus-activation=true
+
 # Exit with status
 exit $?
 EOF
