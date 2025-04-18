@@ -111,7 +111,7 @@ dnf5 install -y --no-gpgchecks \
 
 #disable snapd services for now
 systemctl disable snapd.socket
-systemctl disable snapd.session-agent
+systemctl disable --user snapd.session-agent
 # User facing fixes for flatpak and more
 # Create the script
 # Write the content to the file
@@ -290,6 +290,8 @@ systemctl daemon-reload &&
 for service in home.mount snap.mount snap-symlink.service; do
     systemctl enable --now "$service"
 done
+
+systemctl enable --user --global --now snapd.session-agent
 
     # Create the marker file
     touch "$MARKER_FILE"
