@@ -350,6 +350,8 @@ EOF
 # Make the steam wrapper executable
 chmod +x "/usr/bin/steam"
 
+rm -f /home
+
 # remove brew
 #curl -Lo /tmp/brew-uninstall https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh && \
 #    chmod +x /tmp/brew-uninstall && \
