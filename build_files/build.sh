@@ -221,6 +221,23 @@ else
     flatpak install -y net.lutris.Lutris
     flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
     flatpak install -y org.freedesktop.Platform.VulkanLayer.OBSVkCapture
+    
+echo "Creating systemd service at /etc/systemd/system/snap-symlink.service..."
+cat << EOT > "/etc/systemd/system/snap-symlink.service"
+[Unit]
+Description=Creates /snap symlink in for OSTree
+DefaultDependencies=no
+[Service]
+Type=oneshot
+ExecStartPre=chattr -i /
+ExecStart=/usr/bin/ln -sf /var/lib/snapd/snap /
+ExecStartPost=chattr +i /
+[Install]
+WantedBy=snapd.socket
+EOT
+
+systemctl enable --now snap-symlink
+
     # Create the marker file
     touch "$MARKER_FILE"
     echo "Fixes applied. Marker file created at $MARKER_FILE."
