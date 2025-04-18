@@ -311,6 +311,7 @@ EOF
 cat > /etc/systemd/system/var-mnt.mount << 'EOF'
 [Unit]
 Description=Bind mount /mnt to /var/mnt
+DefaultDependencies=no
 Before=local-fs.target
 
 [Mount]
