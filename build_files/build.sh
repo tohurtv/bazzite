@@ -305,7 +305,8 @@ cat > /etc/systemd/system/var-mnt.mount << 'EOF'
 [Unit]
 After=mkdir-rootfs@var-mnt.service
 Wants=mkdir-rootfs@var-mnt.service
-Before=local-fs-pre.target
+Before=local-fs.target
+After=local-fs-pre.target
 [Mount]
 What=/var/mnt
 Where=/mnt
