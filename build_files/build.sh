@@ -292,8 +292,7 @@ systemctl enable system-tweaks.service
 cat > /etc/systemd/system/setup-mnt-dir.service << 'EOF'
 [Unit]
 Description=Prepare /mnt for bind mount
-DefaultDependencies=no
-Before=local-fs-pre.target
+Before=local-fs.target
 
 [Service]
 Type=oneshot
@@ -302,7 +301,7 @@ ExecStart=/bin/sh -c "rm -rf /mnt && mkdir -p /mnt"
 ExecStopPost=chattr +i /
 
 [Install]
-WantedBy=local-fs-pre.target
+WantedBy=local-fs.target
 EOF
 
 # Enable it
