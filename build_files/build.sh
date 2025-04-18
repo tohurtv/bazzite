@@ -205,6 +205,8 @@ mkdir -p "$DEST_DIR"
 # Sync themes while preserving permissions and timestamps
 rsync -au "$SRC_DIR/" "$DEST_DIR/"
 
+mount --bind /var/mnt /mnt
+
 # Path to the marker file
 MARKER_FILE="/etc/tweaks-done"
 
@@ -313,6 +315,9 @@ chmod +x "/usr/bin/steam"
 
 # symlink /var/lib/snapd/snap to /snap
 ln -s /var/lib/snapd/snap /snap
+
+rm -f /mnt
+mkdir -p /mnt
 
 # remove brew
 #curl -Lo /tmp/brew-uninstall https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh && \
