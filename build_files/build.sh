@@ -292,7 +292,7 @@ systemctl enable system-tweaks.service
 cat > /etc/systemd/system/setup-mnt-dir.service << 'EOF'
 [Unit]
 Description=Prepare /mnt for bind mount
-Before=local-fs.target
+After=local-fs.target
 
 [Service]
 Type=oneshot
@@ -313,7 +313,6 @@ cat > /etc/systemd/system/var-mnt.mount << 'EOF'
 Description=Bind /var/mnt to /mnt
 After=setup-mnt-dir.service
 Requires=setup-mnt-dir.service
-Before=local-fs.target
 
 [Mount]
 What=/var/mnt
@@ -322,7 +321,7 @@ Type=none
 Options=bind
 
 [Install]
-WantedBy=local-fs.target
+WantedBy=setup-mnt-dir.service
 EOF
 
 # Enable it
