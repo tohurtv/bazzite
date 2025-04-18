@@ -288,20 +288,29 @@ EOF
 # enable the service
 systemctl enable system-tweaks.service
 
+# Enable mounts on /
+cat > /usr/lib/systemd/system/mkdir-rootfs@.service << 'EOF'
+[Unit]
+Description=Enable mount points in / for OSTree
+DefaultDependencies=no
+[Service]
+Type=oneshot
+ExecStartPre=chattr -i /
+ExecStart=/bin/sh -c "[ -L '%f' ] && rm '%f'; mkdir -p '%f'"
+ExecStopPost=chattr +i /
+EOF
+
 # Create mount unit
 cat > /usr/lib/systemd/system/var-mnt.mount << 'EOF'
 [Unit]
-Description=Bind mount /mnt to /var/mnt
-DefaultDependencies=no
+After=mkdir-rootfs@var-mnt.service
+Wants=mkdir-rootfs@var-mnt.service
 Before=local-fs-pre.target
-After=basic.target
-
 [Mount]
 What=/var/mnt
 Where=/mnt
-Type=none
 Options=bind
-
+Type=none
 [Install]
 WantedBy=local-fs.target
 EOF
