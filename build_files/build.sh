@@ -291,7 +291,7 @@ for service in home.mount snap.mount snap-symlink.service; do
     systemctl enable --now "$service"
 done
 
-systemctl enable --user --global --now snapd.session-agent
+systemctl enable --user --global snapd.session-agent
 
     # Create the marker file
     touch "$MARKER_FILE"
