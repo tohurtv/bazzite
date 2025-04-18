@@ -305,14 +305,13 @@ WantedBy=local-fs.target
 EOF
 
 # Enable it
-systemctl enable setup-mnt-dir.service
+#systemctl enable setup-mnt-dir.service
 
 # Create mount unit
 cat > /etc/systemd/system/var-mnt.mount << 'EOF'
 [Unit]
-Description=Bind /var/mnt to /mnt
-After=setup-mnt-dir.service
-Requires=setup-mnt-dir.service
+Description=Bind mount /mnt to /var/mnt
+Before=local-fs.target
 
 [Mount]
 What=/var/mnt
@@ -321,7 +320,7 @@ Type=none
 Options=bind
 
 [Install]
-WantedBy=setup-mnt-dir.service
+WantedBy=local-fs.target
 EOF
 
 # Enable it
