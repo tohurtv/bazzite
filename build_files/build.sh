@@ -303,7 +303,7 @@ EOF
 # Create mount unit
 cat > /etc/systemd/system/var-mnt.mount << 'EOF'
 [Unit]
-Description=Bind mount /var/mnt to /mnt for Snap/Flatpak access
+Description=Bind mount /var/mnt to /mnt
 Requires=mkdir-rootfs@mnt.service
 After=mkdir-rootfs@mnt.service
 Before=local-fs-pre.target
