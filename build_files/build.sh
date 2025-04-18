@@ -206,6 +206,8 @@ mkdir -p "$DEST_DIR"
 # Sync themes while preserving permissions and timestamps
 rsync -au "$SRC_DIR/" "$DEST_DIR/"
 
+mount --bind /var/mnt /mnt
+
 # Path to the marker file
 MARKER_FILE="/etc/tweaks-done"
 
@@ -287,45 +289,6 @@ EOF
 
 # enable the service
 systemctl enable system-tweaks.service
-
-# Enable mounts on /mnt
-cat > /etc/systemd/system/setup-mnt-dir.service << 'EOF'
-[Unit]
-Description=Prepare /mnt for bind mount
-After=local-fs.target
-
-[Service]
-Type=oneshot
-ExecStartPre=chattr -i /
-ExecStart=/bin/sh -c "rm -rf /mnt && mkdir -p /mnt"
-ExecStopPost=chattr +i /
-
-[Install]
-WantedBy=local-fs.target
-EOF
-
-# Enable it
-#systemctl enable setup-mnt-dir.service
-
-# Create mount unit
-cat > /etc/systemd/system/var-mnt.mount << 'EOF'
-[Unit]
-Description=Bind mount /mnt to /var/mnt
-DefaultDependencies=no
-Before=local-fs.target
-
-[Mount]
-What=/var/mnt
-Where=/mnt
-Type=none
-Options=bind
-
-[Install]
-WantedBy=local-fs.target
-EOF
-
-# Enable it
-systemctl enable var-mnt.mount
 
 # Create the steam wrapper for flatpak
 echo "Creating steam wrapper at /usr/bin/steam..."
