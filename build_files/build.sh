@@ -297,8 +297,8 @@ Before=local-fs-pre.target
 After=basic.target
 
 [Mount]
-What=/mnt
-Where=/var/mnt
+What=/var/mnt
+Where=/mnt
 Type=none
 Options=bind
 
