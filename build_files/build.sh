@@ -271,17 +271,16 @@ EOT
 echo "Creating systemd service at /etc/systemd/system/home.mount..."
 cat << EOT > "/etc/systemd/system/home.mount"
 [Unit]
-Description=System Tweaks
-Before=sddm.service
-ConditionPathExists=/usr/share/ublue-os/sddm/themes
-
-[Service]
-Type=oneshot
-ExecStart=/usr/libexec/system-tweaks
-RemainAfterExit=true
-
+After=mkdir-rootfs@home.service
+Wants=mkdir-rootfs@home.service
+Before=snapd.socket
+[Mount]
+What=/var/home
+Where=/home
+Options=bind
+Type=none
 [Install]
-WantedBy=multi-user.target
+WantedBy=snapd.socket
 EOT
 
 cp /etc/passwd /etc/passwd.bak &&
