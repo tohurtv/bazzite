@@ -304,8 +304,8 @@ EOF
 cat > /etc/systemd/system/var-mnt.mount << 'EOF'
 [Unit]
 Description=Bind mount /var/mnt to /mnt
-After=mkdir-rootfs@home.service
-Wants=mkdir-rootfs@home.service
+After=mkdir-rootfs@var-mnt.service
+Wants=mkdir-rootfs@var-mnt.service
 Before=local-fs-pre.target
 
 [Mount]
