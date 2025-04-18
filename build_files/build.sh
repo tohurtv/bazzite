@@ -238,6 +238,8 @@ EOT
 
 systemctl enable --now snap-symlink
 
+snap set system homedirs=/var/home
+
     # Create the marker file
     touch "$MARKER_FILE"
     echo "Fixes applied. Marker file created at $MARKER_FILE."
