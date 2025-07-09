@@ -108,8 +108,8 @@ dnf5 install -y \
        patchelf \
        pamixer
 
-dnf5 install -y --no-gpgchecks \
-       mesa-libOpenCL
+#dnf5 install -y --no-gpgchecks \
+#       mesa-libOpenCL
 
 # User facing fixes for flatpak and more
 # Create the script
