@@ -65,6 +65,7 @@ dnf5 remove -y \
        waydroid \
        waydroid-selinux \
        filelight \
+       gnome-disk-utility \
        ptyxis
 
 # Install packages
@@ -84,6 +85,7 @@ dnf5 install -y \
        plasma-browser-integration \
        konsole \
        konsole-part \
+       kde-partitionmanager \
        nodejs \
        nodejs-npm \
        libaio-devel \
