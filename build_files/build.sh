@@ -35,7 +35,7 @@ sed -i 's/^NoDisplay=false$/NoDisplay=true/' /usr/share/applications/waydroid-co
 #sed -i 's/--backends flatpak-backend //g' /usr/share/applications/org.kde.discover.desktop && \
 rm /usr/share/applications/bazzite-documentation.desktop && \
 rm /usr/share/applications/discourse.desktop && \
-rm /usr/share/applications/sunshine.desktop && \
+rm /usr/share/applications/dev.lizardbyte.app.Sunshine.desktop && \
 rm /usr/bin/bazzite-steam && \
 rm /usr/bin/bazzite-steam-bpm && \
 rm /usr/share/applications/bazzite-steam-bpm.desktop && \
