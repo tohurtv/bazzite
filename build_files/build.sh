@@ -49,8 +49,6 @@ rm /usr/share/applications/bazzite-steam-bpm.desktop && \
 dnf5 remove -y \
        discover-overlay \
        sunshine \
-       lutris \
-       steam \
        steam-device-rules \
        input-remapper \
        rom-properties \
@@ -218,11 +216,11 @@ else
     echo "Running your commands..."
 
     #Install flatpaks
-    flatpak install -y org.kde.ark
-    flatpak install -y com.valvesoftware.Steam
-    flatpak install -y net.lutris.Lutris
-    flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
-    flatpak install -y org.freedesktop.Platform.VulkanLayer.OBSVkCapture
+    #flatpak install -y org.kde.ark
+    #flatpak install -y com.valvesoftware.Steam
+    #flatpak install -y net.lutris.Lutris
+    #flatpak install -y org.freedesktop.Platform.VulkanLayer.MangoHud
+    #flatpak install -y org.freedesktop.Platform.VulkanLayer.OBSVkCapture
     
 # Exit with status
 exit $?
@@ -250,36 +248,6 @@ EOF
 
 # enable the service
 systemctl enable system-tweaks.service
-
-# Create the steam wrapper for flatpak
-echo "Creating steam wrapper at /usr/bin/steam..."
-cat << 'EOF' > "/usr/bin/steam"
-#!/bin/bash
-
-# Check if Steam Flatpak is installed
-if flatpak info com.valvesoftware.Steam &>/dev/null; then
-    flatpak run com.valvesoftware.Steam "$@"
-else
-    # Prompt user using yad
-    yad --title="Steam Flatpak Not Installed" \
-        --button=Yes:0 --button=No:1 \
-        --center \
-        --text="Steam (Flatpak) is not installed.\n\nDo you want to install it now?"
-
-    # Check exit code from yad
-    if [ $? -eq 0 ]; then
-        # Open Discover or GNOME Software via AppStream URI
-        xdg-open "appstream://com.valvesoftware.Steam"
-    fi
-fi
-EOF
-
-
-# Make the steam wrapper executable
-chmod +x "/usr/bin/steam"
-
-# symlink /var/lib/snapd/snap to /snap
-ln -s /var/lib/snapd/snap /snap
 
 rm -f /mnt
 mkdir -p /mnt
