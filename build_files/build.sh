@@ -36,7 +36,7 @@ sed -i 's/^NoDisplay=false$/NoDisplay=true/' /usr/share/applications/waydroid-co
 rm /usr/share/applications/bazzite-documentation.desktop && \
 rm /usr/share/applications/discourse.desktop && \
 rm /usr/share/applications/dev.lizardbyte.app.Sunshine.desktop && \
-rm /usr/bin/bazzite-steam && \
+#rm /usr/bin/bazzite-steam && \
 #rm /usr/bin/bazzite-steam-bpm && \
 #rm /usr/share/applications/bazzite-steam-bpm.desktop && \
 #cp /usr/share/applications/steam.desktop /usr/share/applications/steam-bk.desktop && \
