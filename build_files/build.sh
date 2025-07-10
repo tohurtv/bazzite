@@ -98,6 +98,7 @@ dnf5 install -y \
        v4l-utils \
        wine-core \
        wine-core.i686 \
+       openrgb-udev-rules \
        zerotier-one \
        python3-protobuf \
        patchelf \
