@@ -202,8 +202,6 @@ mkdir -p "$DEST_DIR"
 # Sync themes while preserving permissions and timestamps
 rsync -au "$SRC_DIR/" "$DEST_DIR/"
 
-mount --bind /var/mnt /mnt
-
 # Path to the marker file
 MARKER_FILE="/etc/tweaks-done"
 
@@ -248,9 +246,6 @@ EOF
 
 # enable the service
 systemctl enable system-tweaks.service
-
-rm -f /mnt
-mkdir -p /mnt
 
 # remove brew
 #curl -Lo /tmp/brew-uninstall https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh && \
