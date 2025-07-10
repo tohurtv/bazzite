@@ -55,12 +55,10 @@ dnf5 remove -y \
        rom-properties-kf6 \
        rom-properties-thumbnailer-dbus \
        rom-properties-common \
-       ark \
        kcharselect \
        kdebugsettings \
        kfind \
        kjournald \
-       webapp-manager \
        kwrite \
        fcitx5 \
        fcitx5-mozc \
