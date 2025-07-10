@@ -37,8 +37,8 @@ rm /usr/share/applications/bazzite-documentation.desktop && \
 rm /usr/share/applications/discourse.desktop && \
 rm /usr/share/applications/dev.lizardbyte.app.Sunshine.desktop && \
 rm /usr/bin/bazzite-steam && \
-rm /usr/bin/bazzite-steam-bpm && \
-rm /usr/share/applications/bazzite-steam-bpm.desktop && \
+#rm /usr/bin/bazzite-steam-bpm && \
+#rm /usr/share/applications/bazzite-steam-bpm.desktop && \
 #cp /usr/share/applications/steam.desktop /usr/share/applications/steam-bk.desktop && \
 #cp /usr/share/icons/hicolor/256x256/apps/steam.png /usr/share/icons/hicolor/256x256/apps/steam-bk.png && \
 
@@ -49,7 +49,6 @@ rm /usr/share/applications/bazzite-steam-bpm.desktop && \
 dnf5 remove -y \
        discover-overlay \
        sunshine \
-       steam-device-rules \
        input-remapper \
        rom-properties \
        rom-properties-utils \
